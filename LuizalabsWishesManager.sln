@@ -3,9 +3,17 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.29020.237
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LuizalabsWishesManager", "LuizalabsWishesManager\LuizalabsWishesManager.csproj", "{B6DB000F-724D-4B8A-A372-7E311527F1B9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LuizalabsWishesManager", "LuizalabsWishesManager\LuizalabsWishesManager.csproj", "{B6DB000F-724D-4B8A-A372-7E311527F1B9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LuizalabsWishesManager.Tests", "LuizalabsWishesManager.Tests\LuizalabsWishesManager.Tests.csproj", "{C98CF2E3-EBBB-4155-91A4-698068CDF2B4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LuizalabsWishesManager.Tests", "LuizalabsWishesManager.Tests\LuizalabsWishesManager.Tests.csproj", "{C98CF2E3-EBBB-4155-91A4-698068CDF2B4}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LuizalabsWishesManager.Services", "LuizalabsWishesManager.Services\LuizalabsWishesManager.Services.csproj", "{069B52D1-F451-4553-A155-E29FCFA1500A}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LuizalabsWishesManager.Data", "LuizalabsWishesManager.Repositories\LuizalabsWishesManager.Data.csproj", "{23943D35-F634-459B-BA35-6A6C5B69ED5F}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LuizalabsWishesManager.Shared", "LuizalabsWishesManager.Shared\LuizalabsWishesManager.Shared.csproj", "{CBC2D0BC-0B37-47E4-8EA2-E106A47D8D50}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LuizalabsWishesManager.Domains", "LuizalabsWishesManager.Domains\LuizalabsWishesManager.Domains.csproj", "{AACCB1F7-3743-4C57-8BF3-7A699A3EC17C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +29,22 @@ Global
 		{C98CF2E3-EBBB-4155-91A4-698068CDF2B4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C98CF2E3-EBBB-4155-91A4-698068CDF2B4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C98CF2E3-EBBB-4155-91A4-698068CDF2B4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{069B52D1-F451-4553-A155-E29FCFA1500A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{069B52D1-F451-4553-A155-E29FCFA1500A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{069B52D1-F451-4553-A155-E29FCFA1500A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{069B52D1-F451-4553-A155-E29FCFA1500A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{23943D35-F634-459B-BA35-6A6C5B69ED5F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{23943D35-F634-459B-BA35-6A6C5B69ED5F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{23943D35-F634-459B-BA35-6A6C5B69ED5F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{23943D35-F634-459B-BA35-6A6C5B69ED5F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CBC2D0BC-0B37-47E4-8EA2-E106A47D8D50}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CBC2D0BC-0B37-47E4-8EA2-E106A47D8D50}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CBC2D0BC-0B37-47E4-8EA2-E106A47D8D50}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CBC2D0BC-0B37-47E4-8EA2-E106A47D8D50}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AACCB1F7-3743-4C57-8BF3-7A699A3EC17C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AACCB1F7-3743-4C57-8BF3-7A699A3EC17C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AACCB1F7-3743-4C57-8BF3-7A699A3EC17C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AACCB1F7-3743-4C57-8BF3-7A699A3EC17C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

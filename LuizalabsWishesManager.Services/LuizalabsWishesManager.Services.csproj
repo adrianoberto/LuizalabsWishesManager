@@ -1,0 +1,12 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.2</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\LuizalabsWishesManager.Domains\LuizalabsWishesManager.Domains.csproj" />
+    <ProjectReference Include="..\LuizalabsWishesManager.Repositories\LuizalabsWishesManager.Data.csproj" />
+  </ItemGroup>
+
+</Project>

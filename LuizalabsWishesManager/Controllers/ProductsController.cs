@@ -13,39 +13,37 @@ namespace LuizalabsWishesManager.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class UsersController : ControllerBase
+    public class ProductsController : ControllerBase
     {
-        private readonly IUserService _service;
         private readonly IMapper _mapper;
+        private readonly IProductService _service;
 
-        public UsersController(IMapper mapper, IUserService service)
+        public ProductsController(IMapper mapper, IProductService service)
         {
             _mapper = mapper;
             _service = service;
         }
 
         [HttpGet]
-        public ActionResult<IEnumerable<UserViewModel>> Get([FromQuery] int page_size, int page)
+        public ActionResult<IEnumerable<ProductViewModel>> Get([FromQuery] int page_size, int page)
         {
             if (page <= 0 || page_size <= 0) return BadRequest();
 
-            var users = _service.GetAll(page, page_size);
-            var userModels = _mapper.Map<List<UserViewModel>>((object)users);
+            var products = _service.GetAll(page_size, page);
+            var productsModel = _mapper.Map<IEnumerable<ProductViewModel>>(products);
 
-            return Ok(userModels);
+            return Ok(productsModel); 
         }
      
         // POST api/values
         [HttpPost]
-        public ActionResult Post([FromBody] NewUserViewModel userModel)
+        public ActionResult<HttpStatusCode> Post([FromBody] NewProductViewModel productModel)
         {
-            if (userModel == null) return BadRequest();
-
-            var user = _mapper.Map<User>(userModel); 
-
             try
             {
-                _service.Add(user);
+                var product = _mapper.Map<Product>(productModel);
+                _service.Add(product);
+
                 return Ok();
             }
             catch
