@@ -25,26 +25,35 @@ namespace LuizalabsWishesManager.Controllers
         }
 
         [HttpGet]
-        public ActionResult<IEnumerable<ProductViewModel>> Get([FromQuery] int page_size, int page)
+        public ActionResult<IEnumerable<ProductViewModel>> Get([FromQuery] int? page_size, int? page)
         {
+            if (page == null) page = 1;
+            if (page_size == null) page_size = 10;
+
             if (page <= 0 || page_size <= 0) return BadRequest();
 
-            var products = _service.GetAll(page_size, page);
+            var products = _service.GetAll((int)page, (int)page_size);
+
+            if (products == null || !products.Any()) return NotFound(products);
+
             var productsModel = _mapper.Map<IEnumerable<ProductViewModel>>(products);
 
             return Ok(productsModel); 
         }
-     
-        // POST api/values
+
+        // POST api/products
         [HttpPost]
         public ActionResult<HttpStatusCode> Post([FromBody] NewProductViewModel productModel)
         {
             try
             {
+                if (productModel == null) return BadRequest();
+
                 var product = _mapper.Map<Product>(productModel);
+
                 _service.Add(product);
 
-                return Ok();
+                return StatusCode(HttpStatusCode.Created.GetHashCode(), product);
             }
             catch
             {

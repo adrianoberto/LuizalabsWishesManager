@@ -1,12 +1,8 @@
 ﻿using AutoMapper;
 using LuizalabsWishesManager.Domains.Repositories;
 using LuizalabsWishesManager.Domains.Services;
-using LuizalabsWishesManager.Data;
 using LuizalabsWishesManager.Services;
 using Microsoft.Extensions.DependencyInjection;
-using System;
-using System.Collections.Generic;
-using System.Text;
 using LuizalabsWishesManager.Data.Repositories;
 
 namespace LuizalabsWishesManager.Shared
@@ -24,6 +20,7 @@ namespace LuizalabsWishesManager.Shared
             services.AddTransient<IUserRepository, UserRepository>();
             services.AddTransient<IProductRepository, ProductRepository>();
             services.AddTransient<IWishRepository, WishRepository>();
+            services.AddTransient<IWishProductRepository, WishProductRepository>();
         }
     }
 }

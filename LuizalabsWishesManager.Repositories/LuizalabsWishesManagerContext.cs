@@ -1,6 +1,5 @@
 ﻿using LuizalabsWishesManager.Domains.Models;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Infrastructure;
 
 namespace LuizalabsWishesManager.Data
 {
@@ -15,6 +14,7 @@ namespace LuizalabsWishesManager.Data
         public DbSet<User> Users { get; set; }
         public DbSet<Product> Products { get; set; }
         public DbSet<Wish> Wishs { get; set; }
+        public DbSet<WishProduct> WishProducts { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -22,6 +22,26 @@ namespace LuizalabsWishesManager.Data
             {
                 optionsBuilder.UseSqlServer(@"Server=(localdb)\mssqllocaldb;Database=EFProviders.InMemory;Trusted_Connection=True;ConnectRetryCount=0");
             }
+        }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<Product>(entity =>
+            {                
+                entity.HasKey(p => p.IdProduct);
+            });
+
+            modelBuilder.Entity<User>()
+                .Property(p => p.Id)
+                .ValueGeneratedOnAdd();
+
+            modelBuilder.Entity<Product>()
+                .Property(p => p.IdProduct)
+                .ValueGeneratedOnAdd();
+
+            modelBuilder.Entity<Wish>()
+                .Property(p => p.Id)
+                .ValueGeneratedOnAdd();
         }
     }
 }

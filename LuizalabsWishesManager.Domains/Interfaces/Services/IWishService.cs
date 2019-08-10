@@ -9,5 +9,7 @@ namespace LuizalabsWishesManager.Domains.Services
     {
         Wish GetById(int wishId, int page, int pageSize);
         void Delete(int userId, int productId);
+        void Add(int userId, List<WishProduct> products);
+        IEnumerable<Product> GetAll(int userId, int page, int pageSize);
     }
 }

@@ -25,17 +25,23 @@ namespace LuizalabsWishesManager.Controllers
         }
 
         [HttpGet]
-        public ActionResult<IEnumerable<UserViewModel>> Get([FromQuery] int page_size, int page)
+        public ActionResult<IEnumerable<UserViewModel>> Get([FromQuery] int? page_size, int? page)
         {
+            if(page == null) page = 1;
+            if(page_size == null) page_size = 10;
+
             if (page <= 0 || page_size <= 0) return BadRequest();
 
-            var users = _service.GetAll(page, page_size);
-            var userModels = _mapper.Map<List<UserViewModel>>((object)users);
+            var users = _service.GetAll((int)page, (int)page_size);
+
+            if (users == null || !users.Any()) return NotFound(users);
+
+            var userModels = _mapper.Map<List<UserViewModel>>(users);
 
             return Ok(userModels);
         }
      
-        // POST api/values
+        // POST api/users
         [HttpPost]
         public ActionResult Post([FromBody] NewUserViewModel userModel)
         {
@@ -46,7 +52,7 @@ namespace LuizalabsWishesManager.Controllers
             try
             {
                 _service.Add(user);
-                return Ok();
+                return StatusCode(HttpStatusCode.Created.GetHashCode(), user);
             }
             catch
             {

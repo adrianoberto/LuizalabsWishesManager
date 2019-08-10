@@ -15,6 +15,7 @@ namespace LuizalabsWishesManager.Mappers
             CreateMap<User, UserViewModel>();
             CreateMap<Product, ProductViewModel>();
             CreateMap<Wish, WishViewModel>();
+            CreateMap<WishProduct, ProductWishViewModel>();
         }
     }
 }

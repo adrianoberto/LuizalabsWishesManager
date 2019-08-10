@@ -13,7 +13,10 @@ namespace LuizalabsWishesManager.Mappers
         public ViewModelToDomainMappingProfile()
         {
             CreateMap<UserViewModel, User>();
+            CreateMap<NewUserViewModel, User>();
             CreateMap<ProductViewModel, Product>();
+            CreateMap<NewProductViewModel, Product>();
+            CreateMap<ProductWishViewModel, WishProduct>();
             CreateMap<WishViewModel, Wish>();
         } 
     }

@@ -25,6 +25,11 @@ namespace LuizalabsWishesManager.Services
             return _repository.GetAll();
         }
 
+        public TEntity GetById(int id)
+        {
+            return _repository.GetById(id);
+        }
+
         public IEnumerable<TEntity> GetAll(int page, int pageSize)
         {
             return _repository.GetAll(page, pageSize);
@@ -43,6 +48,6 @@ namespace LuizalabsWishesManager.Services
         public void Dispose()
         {
             _repository.Dispose();
-        }
+        }        
     }
 }

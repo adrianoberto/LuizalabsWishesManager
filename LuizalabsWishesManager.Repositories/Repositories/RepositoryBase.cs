@@ -23,6 +23,7 @@ namespace LuizalabsWishesManager.Data.Repositories
         public void Add(TEntity entity)
         {
             _context.Set<TEntity>().Add(entity);
+            _context.SaveChanges();
         }
 
         public TEntity GetById(int id)
@@ -38,21 +39,27 @@ namespace LuizalabsWishesManager.Data.Repositories
         public IEnumerable<TEntity> GetAll(int page, int pageSize)
         {
             return _context.Set<TEntity>()
-                .Where((user, index) => index >= page - 1)
-                .Take(pageSize)
-                .ToList();
+                .Skip(pageSize * (page - 1))
+                .Take(pageSize);                
         }
-
-        //public IEnumerable<TEntity> GetAll(Expression<Func<TEntity, int, bool>> predicate)
-        public TEntity Get(Expression<Func<TEntity, bool>> predicate)
+        
+        public IEnumerable<TEntity> GetAll(Expression<Func<TEntity, bool>> predicate)
         {
             return _context.Set<TEntity>()                
-                .FirstOrDefault(predicate);
+                .Where(predicate);
+        }
+
+        public IEnumerable<TEntity> GetAll(Expression<Func<TEntity, bool>> predicate, int page, int pageSize)
+        {
+            return _context.Set<TEntity>()
+                .Where(predicate)
+                .Skip(pageSize * (page - 1))
+                .Take(pageSize);
         }
 
         public void Update(TEntity entity)
-        {
-            _context.Entry(entity).State = EntityState.Modified;
+        {   
+            _context.Entry(entity).State = EntityState.Modified;            
             _context.SaveChanges();
         }
 
@@ -64,7 +71,7 @@ namespace LuizalabsWishesManager.Data.Repositories
 
         public void Dispose()
         {
-            throw new NotImplementedException();
+           
         }
     }
 }

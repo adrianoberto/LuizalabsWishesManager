@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Threading.Tasks;
 using AutoMapper;
 using LuizalabsWishesManager.Domains.Models;
@@ -23,36 +24,41 @@ namespace LuizalabsWishesManager.Controllers
             _service = service;
         }
 
-        // GET api/values/5
+        // GET api/wishes/5
         [HttpGet("{id}")]
-        public ActionResult<WishViewModel> Get(int id, [FromQuery] int page_size, int page)
+        public ActionResult<ProductViewModel> Get(int id, [FromQuery] int? page_size, int? page)
         {
             if (id <= 0) return BadRequest();
 
-            if (page_size <= 0) page_size = 1;
-            if (page <= 0) page = 10;
+            if (page_size == null) page_size = 1;
+            if (page == null) page = 10;
 
-            var wishes = _service.GetById(id, page_size, page);
+            if (page == 0 || page_size == 0) return BadRequest();
 
-            if (wishes is null) return NotFound(wishes);
+            var products = _service.GetAll(id, (int) page, (int) page_size);
 
-            var wishesModel = _mapper.Map<IEnumerable<WishViewModel>>(wishes);
+            if (products is null || !products.Any()) return NotFound(products);
 
-            return Ok(wishesModel);
+            var productsModel = _mapper.Map<IEnumerable<ProductViewModel>>(products);
+
+            return Ok(productsModel);
         }
 
-        // POST api/values
-        [HttpPost]
-        public ActionResult Post([FromBody] NewWishViewModel wishModel)
+        // POST api/wishes
+        [HttpPost("{userId}")]
+        public ActionResult Post(int userId, [FromBody] List<ProductWishViewModel> productsModel)
         {
-            if (wishModel == null) return BadRequest();            
+            if (productsModel == null) return BadRequest();            
 
             try
             {
-                var wish = _mapper.Map<Wish>(wishModel);
-                _service.Add(wish);
+                var products = _mapper.Map<List<WishProduct>>(productsModel);
+                
+                _service.Add(userId, products);
 
-                return CreatedAtAction("", wishModel);
+                return StatusCode(
+                    HttpStatusCode.Created.GetHashCode()                    
+                ); 
             }
             catch
             {
@@ -60,14 +66,8 @@ namespace LuizalabsWishesManager.Controllers
             }
         }
 
-        // PUT api/values/5
-        [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
-        {
 
-        }
-
-        // DELETE api/values/5
+        // DELETE api/wishes/5
         [HttpDelete("{userId}/{productId}")]
         public ActionResult Delete(int userId, int productId)
         {

@@ -10,7 +10,12 @@ namespace LuizalabsWishesManager.ViewModels
 
     public class ProductViewModel
     {
-        public int Id { get; set; }
+        public int IdProduct { get; set; }
         public string Name { get; set; }
+    }
+
+    public class ProductWishViewModel
+    {
+        public int IdProduct { get; set; }        
     }
 }

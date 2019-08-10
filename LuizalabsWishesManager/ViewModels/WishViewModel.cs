@@ -7,10 +7,8 @@ using System.Threading.Tasks;
 namespace LuizalabsWishesManager.ViewModels
 {
     public class NewWishViewModel
-    {
-        [Required]
-        [Display(Name = "idProduct")]
-        public int Id { get; set; }
+    {   
+        public int IdProduct { get; set; }
     }
 
     public class WishViewModel

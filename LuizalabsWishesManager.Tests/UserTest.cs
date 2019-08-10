@@ -20,16 +20,7 @@ namespace Tests
         [Test]
         public void NewUserTest()
         {
-            var newUser = new User
-            {
-                Id = 1,
-                Name = "User 1",
-                Email = "user1@teste.com"
-            };
-
-            _service.Add(newUser);
-
-            var users = _service.GetAll();
+           
         }
     }
 }
